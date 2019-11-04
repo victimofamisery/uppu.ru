@@ -36,23 +36,22 @@ and open the template in the editor.
         @php
         $getID3=new \getID3;
         @endphp
-        @foreach($paths as $path)
-        
-        
-        
-        
+        @foreach($paths as $path) 
         <a class="link" href="{{ asset('/storage/'.$path['path'])}}" ><p>{{$path['path']}}</p></a>
-                <div class="dropdown">
-        <img  src="{{ asset('/storage/'.$path['path'])}}" alt="link">
-        @if(preg_match('/[.]mpga$/',$path['path']))
-        @php
-        $tags=$getID3->analyze(Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($path['path']));
-        @endphp
-        <p>{{$tags['tags']['id3v2']['artist'][0]}}<br>
-           {{$tags['tags']['id3v2']['album'][0]}}<br>
-           {{$tags['tags']['id3v2']['title'][0]}}</p>
-        @endif  
-                </div>
+        <div class="dropdown">
+            @php
+            $tags=$getID3->analyze(Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($path['path']));
+            @endphp
+            @if((isset($tags['fileformat'])) &&
+            ($tags['fileformat']=='tiff'||$tags['fileformat']=='jpeg'||$tags['fileformat']=='png'||$tags['fileformat']=='gif'||$tags['fileformat']=='jpg'))                    
+            <img  src="{{ asset('/storage/'.$path['path'])}}" alt="link">
+            @elseif((isset($tags['fileformat'])) && 
+            ($tags['fileformat']=='mp3'||$tags['fileformat']=='wma'||$tags['fileformat']=='aac'||$tags['fileformat']=='wav'||$tags['fileformat']=='flac'))
+            <p>{{$tags['tags']['id3v2']['artist'][0]}}<br>
+                {{$tags['tags']['id3v2']['album'][0]}}<br>
+                {{$tags['tags']['id3v2']['title'][0]}}</p>            
+            @endif  
+        </div>
         @endforeach
     </body>
 </html>
