@@ -1,9 +1,6 @@
+
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,10 +9,17 @@ and open the template in the editor.
         <style>
             .dropdown{
                 display: none;
-                position: absolute;
-                background: white;
+                position: absolute;               
+                color:white;
+                background:black; 
+                z-index: 1;
+                top:100%;
             }  
-            a:hover  + .dropdown{
+
+            a:hover  + .dropdown{                
+                display: block !important;
+            }
+            .dropdown:hover{
                 display: block !important;
             }
         </style>
@@ -37,20 +41,30 @@ and open the template in the editor.
         $getID3=new \getID3;
         @endphp
         @foreach($paths as $path) 
-        <a class="link" href="{{ asset('/storage/'.$path['path'])}}" ><p>{{$path['path']}}</p></a>
-        <div class="dropdown">
-            @php
-            $tags=$getID3->analyze(Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($path['path']));
-            @endphp
-            @if((isset($tags['fileformat'])) &&
-            ($tags['fileformat']=='tiff'||$tags['fileformat']=='jpeg'||$tags['fileformat']=='png'||$tags['fileformat']=='gif'||$tags['fileformat']=='jpg'))                    
-            <img  src="{{ asset('/storage/'.$path['path'])}}" alt="link">
-            @elseif((isset($tags['fileformat'])) && 
-            ($tags['fileformat']=='mp3'||$tags['fileformat']=='wma'||$tags['fileformat']=='aac'||$tags['fileformat']=='wav'||$tags['fileformat']=='flac'))
-            <p>{{$tags['tags']['id3v2']['artist'][0]}}<br>
-                {{$tags['tags']['id3v2']['album'][0]}}<br>
-                {{$tags['tags']['id3v2']['title'][0]}}</p>            
-            @endif  
+        <div style="position:relative;">
+            <a class="link" href="{{ asset('/storage/'.$path['path'])}}" ><p>{{$path['path']}}</p></a>
+            <div class="dropdown">
+                @php
+                $tags=$getID3->analyze(Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($path['path']));
+                @endphp
+                @if((isset($tags['fileformat'])) &&
+                ($tags['fileformat']=='tiff'||$tags['fileformat']=='jpeg'||$tags['fileformat']=='png'||$tags['fileformat']=='gif'||$tags['fileformat']=='jpg'))                    
+                <img  src="{{ asset('/storage/'.$path['path'])}}" height="300px">
+                @elseif((isset($tags['fileformat'])) && 
+                ($tags['fileformat']=='mp3'||$tags['fileformat']=='wma'||$tags['fileformat']=='aac'||$tags['fileformat']=='wav'||$tags['fileformat']=='flac'))
+                <p>
+                    <img src="data:{{$tags['id3v2']['APIC'][0]['image_mime']}};base64,{{base64_encode($tags['id3v2']['APIC'][0]['data'])}}" height="300px"><br>
+                    {{$tags['tags']['id3v2']['artist'][0]}}<br>
+                    {{$tags['tags']['id3v2']['album'][0]}}<br>
+                    {{$tags['tags']['id3v2']['title'][0]}}<br>
+                    <audio src="media/{{$path['path']}}" controls ></audio>
+                </p> 
+                @elseif((isset($tags['fileformat'])) && 
+                ($tags['fileformat']=='mp4'))
+                  <video controls preload="auto" src="media/{{$path['path']}}" height="300px"></video>
+                    
+                @endif  
+            </div>
         </div>
         @endforeach
     </body>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c5890650929cfc058f52c2effc30f37",
+    "content-hash": "6df306c413936e68cd330db76eeb6561",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1228,6 +1228,56 @@
             "time": "2017-02-14T16:28:37+00:00"
         },
         {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
             "name": "psr/log",
             "version": "1.1.0",
             "source": {
@@ -1395,6 +1445,113 @@
                 "shell"
             ],
             "time": "2018-10-13T15:16:03+00:00"
+        },
+        {
+            "name": "ramsey/collection",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/collection.git",
+                "reference": "c7a212fb072674acd77f7f62041182b545f91bc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/collection/zipball/c7a212fb072674acd77f7f62041182b545f91bc5",
+                "reference": "c7a212fb072674acd77f7f62041182b545f91bc5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.5",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "jangregor/phpstan-prophecy": "^0.2.0",
+                "mockery/mockery": "^1.2",
+                "phpstan/phpstan": "^0.10.3",
+                "phpstan/phpstan-mockery": "^0.10.2",
+                "phpunit/phpunit": "^7.3",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Collection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                }
+            ],
+            "description": "A PHP 7.2+ library for representing and manipulating collections.",
+            "homepage": "https://github.com/ramsey/collection",
+            "keywords": [
+                "array",
+                "collection",
+                "hash",
+                "map"
+            ],
+            "time": "2018-12-31T09:36:17+00:00"
+        },
+        {
+            "name": "ramsey/http-range",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/http-range.git",
+                "reference": "f4239e07bbf43f9693f31b4f273b2aff991a3c80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/http-range/zipball/f4239e07bbf43f9693f31b4f273b2aff991a3c80",
+                "reference": "f4239e07bbf43f9693f31b4f273b2aff991a3c80",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2",
+                "psr/http-message": "^1.0",
+                "ramsey/collection": "^1.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "mockery/mockery": "^1.2",
+                "phpstan/phpstan": "^0.10.3",
+                "phpstan/phpstan-mockery": "^0.10.2",
+                "phpunit/phpunit": "^7.3",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Http\\Range\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                }
+            ],
+            "description": "A PHP library for parsing and handling HTTP range requests.",
+            "homepage": "https://github.com/ramsey/http-range",
+            "keywords": [
+                "http",
+                "range",
+                "requests"
+            ],
+            "time": "2018-12-31T21:04:41+00:00"
         },
         {
             "name": "ramsey/uuid",

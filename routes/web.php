@@ -18,4 +18,4 @@ Route::post('/image/upload','ImageController@upload')->name('image.upload');
 
 Route::get('list','ListController@list');
 
-Route::get('test','TestController@test');
+Route::get('media/uploads/{path}','MediaController@stream');
